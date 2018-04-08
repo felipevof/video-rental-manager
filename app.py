@@ -1,3 +1,7 @@
+"""
+    The configuration for the top-level object that represents the Web server.
+"""
+
 from flask import Flask
 
 from endpoints import home
