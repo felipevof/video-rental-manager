@@ -1,19 +1,18 @@
 """
     Defines classes related addresses.
 """
+from enum import IntEnum
+
+
+class AddressType(IntEnum):
+    COMMERCIAL=0
+    RESIDENTIAL=1
 
 
 class Address(object):
-    # [ ] 10 attributes
-    # [ ] Attributes encapsulated
-    # [ ] Clients can set all 10 attributes
-    # [ ] Persistent?
-    # [ ] Inheritance base?
-    # [ ] Abstract?
-    # [ ] At least one one to many?
-    # [ ] At least one many to many?
-    # [ ] CRUD
-    # [ ] Uses a relational DB
+    """
+        How an address is modeled in the application.
+    """
     def __init__(self,
                  street:str,
                  # not all street numbers are integer-only (for instance: 415B), hence the str
@@ -22,7 +21,10 @@ class Address(object):
                  zip_code:int,
                  city:str,
                  state:str,
-                 country:str):
+                 country:str,
+                 reference:str,
+                 address_type:AddressType,
+                 distance_fee_applicable:bool):
         self.street = street
         self.number = number
         self.extra = extra
@@ -30,6 +32,9 @@ class Address(object):
         self.city = city
         self.state = state
         self.country = country
+        self.reference = reference
+        self.address_type = address_type
+        self.distance_fee_applicable = distance_fee_applicable
 
     def getStreet(self):
         return self.street
@@ -72,3 +77,21 @@ class Address(object):
 
     def setCountry(self, value):
         self.country = value
+
+    def getReference(self):
+        return self.reference
+
+    def setReference(self, value):
+        self.reference = value
+
+    def getAddressType(self):
+        return self.address_type
+
+    def setAddressType(self, value):
+        self.address_type = value
+
+    def getDistanceFeeApplicable(self):
+        return self.distance_fee_applicable
+
+    def setDistanceFeeApplicable(self, value):
+        self.distance_fee_applicable = value

@@ -11,7 +11,13 @@ from .addresses import Address
 class Gender(IntEnum):
     MALE=0
     FEMALE=1
-    UNDISCLOSED=3
+    UNDISCLOSED=2
+
+
+class EmployeePerformance(IntEnum):
+    BAD=0
+    REGULAR=1
+    EXCEPTIONAL=2
 
 
 class User(ABC):
@@ -19,16 +25,6 @@ class User(ABC):
         The base object for all types of users of the system.
         This is an abstract class (extends ABC, Abstract Base Class)
     """
-    # [x] 10 attributes
-    # [ ] Attributes encapsulated
-    # [ ] Clients can set all 10 attributes
-    # [ ] Persistent?
-    # [x] Inheritance base?
-    # [x] Abstract?
-    # [ ] At least one one to many?
-    # [ ] At least one many to many?
-    # [ ] CRUD
-    # [ ] Uses a relational DB
     def __init__(self,
                  name:str,
                  email:str,
@@ -39,7 +35,7 @@ class User(ABC):
                  birthdate:date,
                  gender:Gender,
                  cpf:str,
-                 rg:str):
+                 active:bool):
         self.name = name
         self.email = email
         self.phone = phone
@@ -49,7 +45,7 @@ class User(ABC):
         self.birthdate = birthdate
         self.gender = gender
         self.cpf = cpf
-        self.rg = rg
+        self.active = active
 
     def getName(self):
         return self.name
@@ -105,11 +101,11 @@ class User(ABC):
     def setCPF(self, value):
         self.cpf = value
 
-    def getRG(self):
-        return self.rg
+    def getActive(self):
+        return self.active
 
-    def setRG(self, value):
-        self.rg = value
+    def setActive(self, value):
+        self.active = value
 
 
 class Employee(User):
@@ -117,15 +113,36 @@ class Employee(User):
         A user that is an employee.
         Can approve a rent operation.
     """
-    # [ ] 10 attributes
-    # [ ] Attributes encapsulated
-    # [ ] Clients can set all 10 attributes
-    # [ ] Persistent?
-    # [ ] Inheritance base?
-    # [ ] Abstract?
-    # [ ] At least one one to many?
-    # [ ] At least one many to many?
-    # [ ] CRUD
-    # [ ] Uses a relational DB
-    pass
-    # TODO: fields
+    def __init__(self,
+                 current_performance:EmployeePerformance,
+                 in_training:bool):
+        self.current_performance = current_performance
+        self.in_training = in_training
+
+    def getCurrentPerformance(self):
+        return self.current_performance
+
+    def setCurrentPerformance(self, value):
+        self.current_performance = value
+
+    def getInTraining(self):
+        return self.in_training
+
+    def setInTraining(self, value):
+        self.in_training = value
+
+
+class Client(User):
+    """
+        A user that is a client.
+        Can rent rentables.
+    """
+    def __init__(self,
+                 blacklisted:bool):
+        self.blacklisted = blacklisted
+
+    def getBlacklisted(self):
+        return self.blacklisted
+
+    def setBlacklisted(self, value):
+        self.blacklisted = value

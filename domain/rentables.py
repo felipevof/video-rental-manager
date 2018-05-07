@@ -18,29 +18,21 @@ class Rentable(ABC):
         The base object for all objects that can be rented by users.
         This is an abstract class (extends ABC, Abstract Base Class).
     """
-    # [ ] 10 attributes
-    # [ ] Attributes encapsulated
-    # [ ] Clients can set all 10 attributes
-    # [ ] Persistent?
-    # [x] Inheritance base?
-    # [x] Abstract?
-    # [ ] At least one one to many?
-    # [x] At least one many to many?
-    # [ ] CRUD
-    # [ ] Uses a relational DB
     def __init__(self,
                  name:str,
                  description:str,
                  registered_at:datetime,
                  updated_at:datetime,
                  status:RentableStatus,
-                 related_rentables:list):
+                 related_rentables:list,
+                 age_restriction:int):
         self.name = name
         self.description = description
         self.registered_at = registered_at
         self.updated_at = updated_at
         self.status = status
         self.related_rentables = related_rentables
+        self.age_restriction = age_restriction
 
     def getName(self):
         return self.name
@@ -77,6 +69,12 @@ class Rentable(ABC):
 
     def setRelatedRentables(self, value):
         self.related_rentables = value
+
+    def getAgeRestriction(self):
+        return self.age_restriction
+
+    def setAgeRestriction(self, value):
+        self.age_restriction = value
 
 
 # TODO: The concrete types

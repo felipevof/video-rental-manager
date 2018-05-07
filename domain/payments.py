@@ -17,16 +17,6 @@ class Payment(object):
     """
         Represents a payment made by a user.
     """
-    # [x] 10 attributes
-    # [ ] Attributes encapsulated
-    # [ ] Clients can set all 10 attributes
-    # [ ] Persistent?
-    # [ ] Inheritance base?
-    # [ ] Abstract?
-    # [ ] At least one one to many?
-    # [ ] At least one many to many?
-    # [ ] CRUD
-    # [ ] Uses a relational DB
     def __init__(self,
                  user:User,
                  method:PaymentMethod,

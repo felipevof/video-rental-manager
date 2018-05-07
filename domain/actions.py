@@ -17,16 +17,6 @@ class Rental(object):
     """
         The action that is logged when a user rents one or multiple rentable assets.
     """
-    # [x] 10 attributes
-    # [ ] Attributes encapsulated
-    # [ ] Clients can set all 10 attributes
-    # [ ] Persistent?
-    # [ ] Inheritance base?
-    # [ ] Abstract?
-    # [x] At least one one to many?
-    # [ ] At least one many to many?
-    # [ ] CRUD
-    # [ ] Uses a relational DB
     def __init__(self,
                  rentables:list,
                  rented_by:User,
