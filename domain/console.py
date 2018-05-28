@@ -31,7 +31,7 @@ c = Client(name='Marcos Ferreira', email='mf@gmail.com',
 r1 = Rentable(title="Avengers 2", description="A great marvel movie!", age_restriction=13, language='English', rent_price=5)
 r2 = Rentable(title="Cowboy Bebop", description="A great anime!", age_restriction=18, language='English', rent_price=4)
 r3 = StandUpComedySpecial(title="You people are all the same",
-                          description="Cool special from fire billy boy",
+                          description="Cool special from billy boy",
                           age_restriction=18, duration_minutes=70, headliner_comedian="Bill Burr",
                           opener_comedian='Joe DeRosa', language='English', rent_price=10,
                           offensive_language=True, venue='Ohio Theater')
