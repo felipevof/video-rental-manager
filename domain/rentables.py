@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, Date, ForeignKey, Float, Boolean
 
-from base import Base
+from .base import Base
 
 
 class Rentable(Base):

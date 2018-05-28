@@ -3,7 +3,7 @@ from enum import IntEnum
 from sqlalchemy import Column, String, Integer, Date, DateTime, Enum, Boolean
 from sqlalchemy.orm import relationship
 
-from base import Base
+from .base import Base
 
 
 class Gender(IntEnum):

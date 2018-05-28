@@ -7,7 +7,7 @@ from flask import Flask
 from endpoints import home
 
 # TODO: REMOVE, this is just for compiling checks
-from domain import actions, addresses, payments, rentables, users
+from domain import events, payment_methods, rentables, users
 
 
 app = Flask('video-rental-manager')
