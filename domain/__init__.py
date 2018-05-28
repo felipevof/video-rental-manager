@@ -1,7 +1,7 @@
 """
-    In the domain module/layer, the domain model is defined,
-    along with any domain services.
+    In the data source module/layer, the specifications and mappings for
+    the data used by the application are defined.
 
-    In short, anything that implements business logic (domain or application)
-    should be placed in this module.
+    In short, any database table specification, ORM mapping, repositories or querying
+    mechanisms should be placed in this module.
 """
