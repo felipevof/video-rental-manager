@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import IntEnum
 
 from sqlalchemy import Column, String, Integer, Date, DateTime, Enum, Boolean
@@ -26,7 +27,7 @@ class User(Base):
     name = Column(String)
     email = Column(String)
     birthdate = Column(Date)
-    registered_at = Column(DateTime)
+    registered_at = Column(DateTime, default=datetime.utcnow)
     gender = Column(Enum(Gender))
     active = Column(Boolean, default=True)
     phone = Column(String)

@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import IntEnum
 
 from sqlalchemy import Column, String, Integer, Date, DateTime, Boolean, Table, ForeignKey, Enum
@@ -24,7 +25,7 @@ class RentalEvent(Base):
     __tablename__ = 'rental_events'
 
     id = Column(Integer, primary_key=True)
-    rented_at = Column(DateTime)
+    rented_at = Column(DateTime, default=datetime.utcnow)
     ends_at = Column(DateTime)
     returned_at = Column(DateTime)
     rentables = relationship("Rentable", secondary=rental_event_rentables_association)

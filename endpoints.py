@@ -4,4 +4,4 @@
 
 
 def home():
-    return 'Home Page'
+    return '<h1>Home Page</h1>'
