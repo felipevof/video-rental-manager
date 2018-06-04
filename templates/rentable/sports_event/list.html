@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+  	Sports Events
+  	<a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <ul class="list-group list-group-flush">
+  	{% for event in objects %}
+      <li class="list-group-item">
+      	<img src="{{ event.poster_image }}" class="rounded float-left" width="120" height="175">
+      	<p class="float-right"> {{ event.title }} </p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

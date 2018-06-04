@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, Integer, Date, DateTime, Boolean, Table, 
 from sqlalchemy.orm import relationship
 
 from .base import Base
+from .rentables import Rentable
 
 
 class RentalStatus(IntEnum):
@@ -31,6 +32,7 @@ class RentalEvent(Base):
     rentables = relationship("Rentable", secondary=rental_event_rentables_association)
     employee_id = Column(Integer, ForeignKey('employees.id'))
     client_id = Column(Integer, ForeignKey('clients.id'))
+    client = relationship("Client")
     notes = Column(String, nullable=True)
     status = Column(Enum(RentalStatus), default=RentalStatus.WAITING_RETURN)
     ignore_end_date = Column(Boolean, default=False)

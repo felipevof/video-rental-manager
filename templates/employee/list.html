@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+  	Employees
+  	<a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <ul class="list-group list-group-flush">
+  	{% for employee in objects %}
+      <li class="list-group-item">{{ employee.name }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

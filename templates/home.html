@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>Home</h2>
+{% endblock %}
+
+{% block main_content %}
+  <div class="list-group">
+    <a href="{{ url_for('client_list') }}" class="list-group-item list-group-item-action">Clients</a>
+    <a href="{{ url_for('employee_list') }}" class="list-group-item list-group-item-action">Employees</a>
+    <a href="{{ url_for('credit_card_list') }}" class="list-group-item list-group-item-action">Credit Cards</a>
+    <a href="{{ url_for('rental_event_list') }}" class="list-group-item list-group-item-action">Rentals</a>
+    <a href="{{ url_for('rentable_list') }}" class="list-group-item list-group-item-action">Items</a>
+  </div>
+{% endblock %}

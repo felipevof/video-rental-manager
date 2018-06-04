@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, Integer, Date, DateTime, Enum, Boolean
 from sqlalchemy.orm import relationship
 
 from .base import Base
+from .payment_methods import CreditCard
 
 
 class Gender(IntEnum):
@@ -87,7 +88,7 @@ class Client(User):
 
     blacklisted = Column(Boolean, default=False)
     address = Column(String)
-    credit_cards = relationship("CreditCard", backref="client")
+    credit_cards = relationship(CreditCard, backref="client")
 
     def getBlacklisted(self):
         return self.blacklisted

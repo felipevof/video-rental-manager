@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+  	Rentals
+  	<a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <ul class="list-group list-group-flush">
+  	{% for rental in objects %}
+      <li class="list-group-item">
+      	{{ rental.client.name }}
+      	,
+      	{{ rental.rented_at.strftime('%d/%m/%y %H:%M') }}
+      	to
+      	{{ rental.ends_at.strftime('%d/%m/%y %H:%M') }},
+      	{{ rental.rentables|length }} items
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -17,6 +17,7 @@ class Rentable(Base):
     language = Column(String)
     age_restriction = Column(Integer)
     rent_price = Column(Float)
+    poster_image = Column(String)
 
     # just for class table inheritance shenanigans
     type = Column(String(20))
@@ -50,6 +51,12 @@ class Rentable(Base):
 
     def setRentPrice(self, value):
         self.rent_price = value
+
+    def getPoster(self):
+        return self.poster
+
+    def setPoster(self, value):
+        self.poster = value
 
 # ---
 

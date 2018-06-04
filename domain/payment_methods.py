@@ -3,7 +3,6 @@ from enum import IntEnum
 from sqlalchemy import Column, String, Integer, Date, Enum, ForeignKey
 
 from .base import Base
-from .users import Client
 
 
 class PaymentNetwork(IntEnum):
