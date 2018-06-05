@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, abort
 
 
 def build_context(additional_fields=None):
@@ -16,3 +16,11 @@ def build_context(additional_fields=None):
 def list_response(model, session, template):
     objects = session.query(model).all()
     return render_template(template, **build_context({'objects': objects}))
+
+
+def details_response(model, obj_id, session, template):
+    obj = session.query(model).filter(model.id==obj_id).first()
+    if obj:
+        return render_template(template, **build_context({'obj': obj}))
+    else:
+        abort(404)

@@ -8,9 +8,11 @@
 {% endblock %}
 
 {% block main_content %}
-  <ul class="list-group list-group-flush">
-  	{% for client in objects %}
-      <li class="list-group-item">{{ client.name }}</li>
-    {% endfor %}
-  </ul>
+	<div class="list-group">
+		{% for client in objects %}
+	    	<a href="{{ url_for('client_details', id=client.id) }}" class="list-group-item list-group-item-action">
+	    		{{ client.name }}
+	    	</a>
+	    {% endfor %}
+    </div>
 {% endblock %}
