@@ -8,16 +8,14 @@
 {% endblock %}
 
 {% block main_content %}
-  <ul class="list-group list-group-flush">
-  	{% for rental in objects %}
-      <li class="list-group-item">
-      	{{ rental.client.name }}
-      	,
-      	{{ rental.rented_at.strftime('%d/%m/%y %H:%M') }}
-      	to
-      	{{ rental.ends_at.strftime('%d/%m/%y %H:%M') }},
-      	{{ rental.rentables|length }} items
-      </li>
+  <div class="list-group">
+    {% for rental in objects %}
+      <a href="{{ url_for('rental_event_details', id=rental.id) }}" class="list-group-item list-group-item-action">
+        {{ rental.client.name }},
+        {{ rental.rented_at.strftime('%d/%m/%y %H:%M') }} to
+        {{ rental.ends_at.strftime('%d/%m/%y %H:%M') }},
+        {{ rental.rentables|length }} items
+      </a>
     {% endfor %}
-  </ul>
+  </div>
 {% endblock %}
