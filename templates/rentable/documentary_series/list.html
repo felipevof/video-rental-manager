@@ -8,12 +8,12 @@
 {% endblock %}
 
 {% block main_content %}
-  <ul class="list-group list-group-flush">
-  	{% for series in objects %}
-      <li class="list-group-item">
-      	<img src="{{ series.poster_image }}" class="rounded float-left" width="120" height="175">
-      	<p class="float-right"> {{ series.title }} </p>
-      </li>
+  <div class="list-group">
+    {% for series in objects %}
+      <a href="{{ url_for('documentary_series_details', id=series.id) }}" class="list-group-item list-group-item-action">
+        <img src="{{ series.poster_image }}" class="rounded float-left" width="120" height="175">
+        <p class="float-right"> {{ series.title }} </p>
+      </a>
     {% endfor %}
-  </ul>
+  </div>
 {% endblock %}

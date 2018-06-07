@@ -2,7 +2,7 @@
 
 {% block main_header %}
   <h2>
-    Animated Movie Details
+    Stand-up Comedy Special Details
     <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
   </h2>
 {% endblock %}
@@ -70,22 +70,33 @@
       <p class="float-right">{{obj.genre}}</p>
     </li>
 
-    <!-- Animation fields -->
+    <!-- StandUpComedySpecial fields -->
 
     <li class="list-group-item">
-      <p class="float-left"><b>Animation Studio</b></p>
-      <p class="float-right">{{obj.animation_studio}}</p>
+      <p class="float-left"><b>Headliner Comedian</b></p>
+      <p class="float-right">{{obj.headliner_comedian}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Original Author</b></p>
-      <p class="float-right">{{obj.original_author}}</p>
-    </li>
-
-    <li class="list-group-item">
-      <p class="float-left"><b>Contains 2D Animation?</b></p>
+      <p class="float-left"><b>Opener Comedian</b></p>
       <p class="float-right">
-        {% if obj.has_2d %}
+        {% if obj.opener_comedian %}
+          {{obj.opener_comedian}}
+        {% else %}
+          --
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Venue</b></p>
+      <p class="float-right">{{obj.venue}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Offensive Language?</b></p>
+      <p class="float-right">
+        {% if obj.offensive_language %}
           Yes
         {% else %}
           No
@@ -94,23 +105,12 @@
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains 3D Animation?</b></p>
+      <p class="float-left"><b>Additional Entertainers</b></p>
       <p class="float-right">
-        {% if obj.has_3d %}
-          Yes
+        {% if obj.additional_entertainers %}
+          {{obj.additional_entertainers}}
         {% else %}
-          No
-        {% endif %}
-      </p>
-    </li>
-
-    <li class="list-group-item">
-      <p class="float-left"><b>Contains Adult Content?</b></p>
-      <p class="float-right">
-        {% if obj.adult_content %}
-          Yes
-        {% else %}
-          No
+          --
         {% endif %}
       </p>
     </li>

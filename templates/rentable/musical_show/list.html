@@ -8,12 +8,12 @@
 {% endblock %}
 
 {% block main_content %}
-  <ul class="list-group list-group-flush">
-  	{% for movie in objects %}
-      <li class="list-group-item">
-      	<img src="{{ movie.poster_image }}" class="rounded float-left" width="120" height="175">
-      	<p class="float-right"> {{ movie.title }} </p>
-      </li>
+  <div class="list-group">
+    {% for movie in objects %}
+      <a href="{{ url_for('musical_show_details', id=movie.id) }}" class="list-group-item list-group-item-action">
+        <img src="{{ movie.poster_image }}" class="rounded float-left" width="120" height="175">
+        <p class="float-right"> {{ movie.title }} </p>
+      </a>
     {% endfor %}
-  </ul>
+  </div>
 {% endblock %}

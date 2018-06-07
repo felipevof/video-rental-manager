@@ -2,7 +2,7 @@
 
 {% block main_header %}
   <h2>
-    Animated Movie Details
+    Video Game Details
     <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
   </h2>
 {% endblock %}
@@ -43,12 +43,7 @@
       </p>
     </li>
 
-    <!-- FeatureFilm fields -->
-
-    <li class="list-group-item">
-      <p class="float-left"><b>Duration (minutes)</b></p>
-      <p class="float-right">{{obj.duration_minutes}}</p>
-    </li>
+    <!-- VideoGame fields -->
 
     <li class="list-group-item">
       <p class="float-left"><b>Publisher</b></p>
@@ -56,13 +51,8 @@
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Producer</b></p>
-      <p class="float-right">{{obj.producer}}</p>
-    </li>
-
-    <li class="list-group-item">
-      <p class="float-left"><b>Release (Year)</b></p>
-      <p class="float-right">{{obj.release_year}}</p>
+      <p class="float-left"><b>Developer</b></p>
+      <p class="float-right">{{obj.developer}}</p>
     </li>
 
     <li class="list-group-item">
@@ -70,22 +60,20 @@
       <p class="float-right">{{obj.genre}}</p>
     </li>
 
-    <!-- Animation fields -->
-
     <li class="list-group-item">
-      <p class="float-left"><b>Animation Studio</b></p>
-      <p class="float-right">{{obj.animation_studio}}</p>
+      <p class="float-left"><b>Platform</b></p>
+      <p class="float-right">{{obj.platform}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Original Author</b></p>
-      <p class="float-right">{{obj.original_author}}</p>
+      <p class="float-left"><b>Release Year</b></p>
+      <p class="float-right">{{obj.release_year}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains 2D Animation?</b></p>
+      <p class="float-left"><b>Demo?</b></p>
       <p class="float-right">
-        {% if obj.has_2d %}
+        {% if obj.demo %}
           Yes
         {% else %}
           No
@@ -94,9 +82,9 @@
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains 3D Animation?</b></p>
+      <p class="float-left"><b>Single Player?</b></p>
       <p class="float-right">
-        {% if obj.has_3d %}
+        {% if obj.single_player %}
           Yes
         {% else %}
           No
@@ -105,9 +93,31 @@
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains Adult Content?</b></p>
+      <p class="float-left"><b>Local Multiplayer?</b></p>
       <p class="float-right">
-        {% if obj.adult_content %}
+        {% if obj.local_multiplayer %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Online Multiplayer?</b></p>
+      <p class="float-right">
+        {% if obj.online_multiplayer %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>DLC Included?</b></p>
+      <p class="float-right">
+        {% if obj.dlc_included %}
           Yes
         {% else %}
           No

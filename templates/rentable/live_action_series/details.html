@@ -2,7 +2,7 @@
 
 {% block main_header %}
   <h2>
-    Animated Movie Details
+    Live Action Series Details
     <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
   </h2>
 {% endblock %}
@@ -43,26 +43,21 @@
       </p>
     </li>
 
-    <!-- FeatureFilm fields -->
+    <!-- SeriesSeason fields -->
 
     <li class="list-group-item">
-      <p class="float-left"><b>Duration (minutes)</b></p>
-      <p class="float-right">{{obj.duration_minutes}}</p>
+      <p class="float-left"><b>Season Number</b></p>
+      <p class="float-right">{{obj.season_number}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Publisher</b></p>
-      <p class="float-right">{{obj.publisher}}</p>
+      <p class="float-left"><b>Number of Episodes</b></p>
+      <p class="float-right">{{obj.episode_count}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Producer</b></p>
-      <p class="float-right">{{obj.producer}}</p>
-    </li>
-
-    <li class="list-group-item">
-      <p class="float-left"><b>Release (Year)</b></p>
-      <p class="float-right">{{obj.release_year}}</p>
+      <p class="float-left"><b>Episode Duration (Minutes)</b></p>
+      <p class="float-right">{{obj.episode_duration_minutes}}</p>
     </li>
 
     <li class="list-group-item">
@@ -70,22 +65,38 @@
       <p class="float-right">{{obj.genre}}</p>
     </li>
 
-    <!-- Animation fields -->
-
     <li class="list-group-item">
-      <p class="float-left"><b>Animation Studio</b></p>
-      <p class="float-right">{{obj.animation_studio}}</p>
-    </li>
-
-    <li class="list-group-item">
-      <p class="float-left"><b>Original Author</b></p>
-      <p class="float-right">{{obj.original_author}}</p>
-    </li>
-
-    <li class="list-group-item">
-      <p class="float-left"><b>Contains 2D Animation?</b></p>
+      <p class="float-left"><b>Network</b></p>
       <p class="float-right">
-        {% if obj.has_2d %}
+        {% if obj.network %}
+          {{obj.network}}
+        {% else %}
+          --
+        {% endif %}
+      </p>
+    </li>
+
+    <!-- LiveActionSeries fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Cast</b></p>
+      <p class="float-right">{{obj.cast}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Director</b></p>
+      <p class="float-right">{{obj.director}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Writer</b></p>
+      <p class="float-right">{{obj.writer}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Emmy Nominee?</b></p>
+      <p class="float-right">
+        {% if obj.emmy_nominee %}
           Yes
         {% else %}
           No
@@ -94,20 +105,9 @@
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains 3D Animation?</b></p>
+      <p class="float-left"><b>Emmy Winner?</b></p>
       <p class="float-right">
-        {% if obj.has_3d %}
-          Yes
-        {% else %}
-          No
-        {% endif %}
-      </p>
-    </li>
-
-    <li class="list-group-item">
-      <p class="float-left"><b>Contains Adult Content?</b></p>
-      <p class="float-right">
-        {% if obj.adult_content %}
+        {% if obj.emmy_winner %}
           Yes
         {% else %}
           No

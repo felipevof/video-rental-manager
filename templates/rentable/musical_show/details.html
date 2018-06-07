@@ -2,7 +2,7 @@
 
 {% block main_header %}
   <h2>
-    Animated Movie Details
+    Musical Show Details
     <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
   </h2>
 {% endblock %}
@@ -70,22 +70,22 @@
       <p class="float-right">{{obj.genre}}</p>
     </li>
 
-    <!-- Animation fields -->
+    <!-- MusicalShow fields -->
 
     <li class="list-group-item">
-      <p class="float-left"><b>Animation Studio</b></p>
-      <p class="float-right">{{obj.animation_studio}}</p>
+      <p class="float-left"><b>Artist</b></p>
+      <p class="float-right">{{obj.artist}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Original Author</b></p>
-      <p class="float-right">{{obj.original_author}}</p>
+      <p class="float-left"><b>Venue</b></p>
+      <p class="float-right">{{obj.venue}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains 2D Animation?</b></p>
+      <p class="float-left"><b>Live?</b></p>
       <p class="float-right">
-        {% if obj.has_2d %}
+        {% if obj.live %}
           Yes
         {% else %}
           No
@@ -94,9 +94,9 @@
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains 3D Animation?</b></p>
+      <p class="float-left"><b>Acoustic?</b></p>
       <p class="float-right">
-        {% if obj.has_3d %}
+        {% if obj.acoustic %}
           Yes
         {% else %}
           No
@@ -105,9 +105,20 @@
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains Adult Content?</b></p>
+      <p class="float-left"><b>Grammy Nominee?</b></p>
       <p class="float-right">
-        {% if obj.adult_content %}
+        {% if obj.grammy_nominee %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Grammy Winner?</b></p>
+      <p class="float-right">
+        {% if obj.grammy_winner %}
           Yes
         {% else %}
           No

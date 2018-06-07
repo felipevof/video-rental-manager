@@ -2,7 +2,7 @@
 
 {% block main_header %}
   <h2>
-    Animated Movie Details
+    Documentary Details
     <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
   </h2>
 {% endblock %}
@@ -70,44 +70,38 @@
       <p class="float-right">{{obj.genre}}</p>
     </li>
 
-    <!-- Animation fields -->
+    <!-- Documentary fields -->
 
     <li class="list-group-item">
-      <p class="float-left"><b>Animation Studio</b></p>
-      <p class="float-right">{{obj.animation_studio}}</p>
+      <p class="float-left"><b>Director</b></p>
+      <p class="float-right">{{obj.director}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Original Author</b></p>
-      <p class="float-right">{{obj.original_author}}</p>
+      <p class="float-left"><b>Narrator</b></p>
+      <p class="float-right">{{obj.narrator}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains 2D Animation?</b></p>
+      <p class="float-left"><b>Locations</b></p>
+      <p class="float-right">{{obj.locations}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Guests</b></p>
       <p class="float-right">
-        {% if obj.has_2d %}
-          Yes
+        {% if obj.guests %}
+          {{obj.guests}}
         {% else %}
-          No
+          --
         {% endif %}
       </p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains 3D Animation?</b></p>
+      <p class="float-left"><b>Low Budget?</b></p>
       <p class="float-right">
-        {% if obj.has_3d %}
-          Yes
-        {% else %}
-          No
-        {% endif %}
-      </p>
-    </li>
-
-    <li class="list-group-item">
-      <p class="float-left"><b>Contains Adult Content?</b></p>
-      <p class="float-right">
-        {% if obj.adult_content %}
+        {% if obj.low_budget %}
           Yes
         {% else %}
           No

@@ -8,12 +8,12 @@
 {% endblock %}
 
 {% block main_content %}
-  <ul class="list-group list-group-flush">
-  	{% for event in objects %}
-      <li class="list-group-item">
-      	<img src="{{ event.poster_image }}" class="rounded float-left" width="120" height="175">
-      	<p class="float-right"> {{ event.title }} </p>
-      </li>
+  <div class="list-group">
+    {% for event in objects %}
+      <a href="{{ url_for('sports_event_details', id=event.id) }}" class="list-group-item list-group-item-action">
+        <img src="{{ event.poster_image }}" class="rounded float-left" width="120" height="175">
+        <p class="float-right"> {{ event.title }} </p>
+      </a>
     {% endfor %}
-  </ul>
+  </div>
 {% endblock %}

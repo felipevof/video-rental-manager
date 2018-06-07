@@ -8,12 +8,12 @@
 {% endblock %}
 
 {% block main_content %}
-  <ul class="list-group list-group-flush">
-  	{% for game in objects %}
-      <li class="list-group-item">
-      	<img src="{{ game.poster_image }}" class="rounded float-left" width="120" height="175">
-      	<p class="float-right"> {{ game.title }} </p>
-      </li>
+  <div class="list-group">
+    {% for game in objects %}
+      <a href="{{ url_for('video_game_details', id=game.id) }}" class="list-group-item list-group-item-action">
+        <img src="{{ game.poster_image }}" class="rounded float-left" width="120" height="175">
+        <p class="float-right"> {{ game.title }} </p>
+      </a>
     {% endfor %}
-  </ul>
+  </div>
 {% endblock %}

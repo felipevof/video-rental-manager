@@ -2,7 +2,7 @@
 
 {% block main_header %}
   <h2>
-    Animated Movie Details
+    Sports Event Details
     <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
   </h2>
 {% endblock %}
@@ -43,76 +43,56 @@
       </p>
     </li>
 
-    <!-- FeatureFilm fields -->
+    <!-- SportsEvent fields -->
 
     <li class="list-group-item">
-      <p class="float-left"><b>Duration (minutes)</b></p>
-      <p class="float-right">{{obj.duration_minutes}}</p>
+      <p class="float-left"><b>Network</b></p>
+      <p class="float-right">{{obj.network}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Publisher</b></p>
-      <p class="float-right">{{obj.publisher}}</p>
+      <p class="float-left"><b>League</b></p>
+      <p class="float-right">{{obj.league}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Producer</b></p>
-      <p class="float-right">{{obj.producer}}</p>
+      <p class="float-left"><b>Championship Phase</b></p>
+      <p class="float-right">{{obj.championship_phase}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Release (Year)</b></p>
-      <p class="float-right">{{obj.release_year}}</p>
+      <p class="float-left"><b>Location</b></p>
+      <p class="float-right">{{obj.location}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Genre</b></p>
-      <p class="float-right">{{obj.genre}}</p>
-    </li>
-
-    <!-- Animation fields -->
-
-    <li class="list-group-item">
-      <p class="float-left"><b>Animation Studio</b></p>
-      <p class="float-right">{{obj.animation_studio}}</p>
+      <p class="float-left"><b>Number of Periods</b></p>
+      <p class="float-right">{{obj.periods}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Original Author</b></p>
-      <p class="float-right">{{obj.original_author}}</p>
+      <p class="float-left"><b>Period Duration (Minutes)</b></p>
+      <p class="float-right">{{obj.period_duration_minutes}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains 2D Animation?</b></p>
-      <p class="float-right">
-        {% if obj.has_2d %}
-          Yes
-        {% else %}
-          No
-        {% endif %}
-      </p>
+      <p class="float-left"><b>Home Team</b></p>
+      <p class="float-right">{{obj.home_team}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains 3D Animation?</b></p>
-      <p class="float-right">
-        {% if obj.has_3d %}
-          Yes
-        {% else %}
-          No
-        {% endif %}
-      </p>
+      <p class="float-left"><b>Away Team</b></p>
+      <p class="float-right">{{obj.away_team}}</p>
     </li>
 
     <li class="list-group-item">
-      <p class="float-left"><b>Contains Adult Content?</b></p>
-      <p class="float-right">
-        {% if obj.adult_content %}
-          Yes
-        {% else %}
-          No
-        {% endif %}
-      </p>
+      <p class="float-left"><b>Home Team Score</b></p>
+      <p class="float-right">{{obj.home_team_score}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Away Team Score</b></p>
+      <p class="float-right">{{obj.away_team_score}}</p>
     </li>
   </ul>
 {% endblock %}
