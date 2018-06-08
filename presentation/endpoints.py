@@ -13,7 +13,7 @@ from domain.rentables import (Rentable, LiveActionSeries, AnimatedSeries, Docume
                               StandUpComedySpecial, LiveActionMovie, AnimatedMovie,
                               MusicalShow, Documentary, VideoGame, SportsEvent)
 
-from .utils import build_context, list_response, details_response
+from .utils import build_context, list_response, details_response, delete_response
 
 
 def home():
@@ -26,12 +26,18 @@ def client_list():
 def client_details(id):
     return details_response(Client, id, g.db_session, 'client/details.html')
 
+def client_delete(id):
+    return delete_response(Client, id, g.db_session)
+
 
 def employee_list():
     return list_response(Employee, g.db_session, 'employee/list.html')
 
 def employee_details(id):
     return details_response(Employee, id, g.db_session, 'employee/details.html')
+
+def employee_delete(id):
+    return delete_response(Employee, id, g.db_session)
 
 
 def credit_card_list():
@@ -40,6 +46,9 @@ def credit_card_list():
 def credit_card_details(id):
     return details_response(CreditCard, id, g.db_session, 'credit_card/details.html')
 
+def credit_card_delete(id):
+    return delete_response(CreditCard, id, g.db_session)
+
 
 def rental_event_list():
     return list_response(RentalEvent, g.db_session, 'rental_event/list.html')
@@ -47,9 +56,15 @@ def rental_event_list():
 def rental_event_details(id):
     return details_response(RentalEvent, id, g.db_session, 'rental_event/details.html')
 
+def rental_event_delete(id):
+    return delete_response(RentalEvent, id, g.db_session)
+
 
 def rentable_list():
     return list_response(Rentable, g.db_session, 'rentable/list.html')
+
+def rentable_delete(id):
+    return delete_response(Rentable, id, g.db_session)
 
 
 def live_action_series_list():

@@ -3,6 +3,12 @@
 {% block main_header %}
   <h2>
     Sports Event Details
+
+    <button data-url="{{ url_for('rentable_delete', id=obj.id) }}"
+            class="btn btn-danger float-right" id="delete_button">
+          Delete
+    </button>
+    
     <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
   </h2>
 {% endblock %}
