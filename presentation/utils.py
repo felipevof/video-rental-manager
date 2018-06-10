@@ -1,4 +1,4 @@
-from flask import render_template, abort, url_for, redirect
+from flask import render_template, abort, url_for, redirect, request
 
 
 def build_context(additional_fields=None):
@@ -14,7 +14,14 @@ def build_context(additional_fields=None):
 
 
 def list_response(model, session, template):
-    objects = session.query(model).all()
+    q = request.args.get('q', None)
+    if q:
+        query = model.filter_by_str(session, q)
+    else:
+        query = session.query(model)
+
+    objects = query.all()
+    
     return render_template(template, **build_context({'objects': objects}))
 
 

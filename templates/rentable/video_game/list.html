@@ -4,6 +4,10 @@
   <h2>
   	Video Games
   	<a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+    <form class="form-inline" id="search_form" action="{{ url_for('video_game_list') }}">
+      <input type="text" name="query" class="form-control" />
+      <button id="search_button" class="btn btn-primary">Search</button>
+    </form>
   </h2>
 {% endblock %}
 
