@@ -58,3 +58,18 @@ def creation_response(model, form, session, mapping_function, template, redirect
         return redirect(url_for(redirect_state))
 
     return render_template(template, form=form)
+
+
+def edit_response(model, obj_id, form, session, mapping_function, template, redirect_state):
+    obj = session.query(model).filter(model.id==obj_id).first()
+    form = form(request.form, obj)
+
+    if request.method == 'POST' and form.validate():
+        mapping_function(form, obj)
+
+        session.add(obj)
+        session.commit()
+
+        return redirect(url_for(redirect_state))
+
+    return render_template(template, form=form)

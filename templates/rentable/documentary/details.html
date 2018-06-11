@@ -9,6 +9,7 @@
           Delete
     </button>
 
+    <a class="btn btn-primary float-right" href="{{ url_for('documentary_edit', id=obj.id) }}" role="button">Edit</a>
     <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
   </h2>
 {% endblock %}

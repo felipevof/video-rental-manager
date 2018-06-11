@@ -18,10 +18,10 @@
         <img src="{{ game.poster_image }}" class="rounded float-left" width="120" height="175">
         <p class="float-right"> {{ game.title }} </p>
       </a>
+    {% endfor %}
 
       <a href="{{ url_for('video_game_create') }}" class="list-group-item list-group-item-action">
         <b><i>Create New +</i></b>
       </a>
-    {% endfor %}
   </div>
 {% endblock %}

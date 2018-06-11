@@ -9,7 +9,7 @@
         {{ field(class='form-control')|safe }}
         {% if field.errors %}
             {% for error in field.errors %}
-                <span class="help-inline">[{{ error }}]</span><br>
+                <span class="help-inline">{{ error }}</span><br>
             {% endfor %}
         {% endif %}
     </div>

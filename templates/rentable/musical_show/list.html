@@ -18,10 +18,10 @@
         <img src="{{ movie.poster_image }}" class="rounded float-left" width="120" height="175">
         <p class="float-right"> {{ movie.title }} </p>
       </a>
+    {% endfor %}
 
         <a href="{{ url_for('musical_show_create') }}" class="list-group-item list-group-item-action">
           <b><i>Create New +</i></b>
         </a>
-    {% endfor %}
   </div>
 {% endblock %}
