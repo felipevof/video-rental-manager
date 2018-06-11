@@ -1,6 +1,6 @@
 import datetime
 
-from domain.base import Session, engine, Base
+from domain.base import session, engine, Base
 from domain.users import Client, Employee, Gender
 from domain.rentables import (Rentable, StandUpComedySpecial, LiveActionSeries, AnimatedSeries,
                               DocumentarySeries, LiveActionMovie, AnimatedMovie, MusicalShow,
@@ -9,13 +9,7 @@ from domain.events import RentalEvent
 from domain.payment_methods import CreditCard, PaymentNetwork
 
 
-def new_session():
-    return Session()
-
-
 Base.metadata.create_all(engine)
-
-session = new_session()
 
 e = Employee(name='Monica Bezerra', email='mb@gmail.com',
              birthdate=datetime.date(day=10, month=10, year=1990),

@@ -18,6 +18,10 @@
         <img src="{{ event.poster_image }}" class="rounded float-left" width="120" height="175">
         <p class="float-right"> {{ event.title }} </p>
       </a>
+
+        <a href="{{ url_for('sports_event_create') }}" class="list-group-item list-group-item-action">
+          <b><i>Create New +</i></b>
+        </a>
     {% endfor %}
   </div>
 {% endblock %}

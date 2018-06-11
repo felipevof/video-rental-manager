@@ -42,3 +42,19 @@ def delete_response(model, obj_id, session):
         return ""
     else:
         abort(404)
+
+
+def creation_response(model, form, session, mapping_function, template, redirect_state):
+    form = form(request.form)
+
+    if request.method == 'POST' and form.validate():
+        obj = model()
+
+        mapping_function(form, obj)
+
+        session.add(obj)
+        session.commit()
+
+        return redirect(url_for(redirect_state))
+
+    return render_template(template, form=form)

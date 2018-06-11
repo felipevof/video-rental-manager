@@ -17,6 +17,10 @@
 	    	<a href="{{ url_for('credit_card_details', id=cc.id) }}" class="list-group-item list-group-item-action">
 	    		{{ cc.holder }}, {{ cc.number[:4] }} XXXX XXXX XXXX
 	    	</a>
+
+        <a href="{{ url_for('credit_card_create') }}" class="list-group-item list-group-item-action">
+          <b><i>Create New +</i></b>
+        </a>
 	    {% endfor %}
     </div>
 {% endblock %}

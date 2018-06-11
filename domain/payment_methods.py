@@ -1,11 +1,10 @@
-from enum import IntEnum
-
 from sqlalchemy import Column, String, Integer, Date, Enum, ForeignKey
 
 from .base import Base
+from .utils import FormEnum
 
 
-class PaymentNetwork(IntEnum):
+class PaymentNetwork(FormEnum):
     VISA = 0
     MASTERCARD = 1
     ELO = 2
@@ -16,11 +15,14 @@ class CreditCard(Base):
     __tablename__ = 'credit_cards'
 
     id = Column(Integer, primary_key=True)
-    client_id = Column(Integer, ForeignKey('clients.id'))
-    holder = Column(String)
-    number = Column(String)
-    expires_at = Column(Date)
-    payment_network = Column(Enum(PaymentNetwork))
+    client_id = Column(Integer, ForeignKey('clients.id'), info={'label': 'Client'})
+    holder = Column(String, info={'label': 'Holder'})
+    number = Column(String, info={'label': 'Number'})
+    expires_at = Column(Date, info={'label': 'Expiration Date'})
+    payment_network = Column(Enum(PaymentNetwork), info={'label': 'Payment Network'})
+
+    def __str__(self):
+        return self.getHolder()
 
     def getClientId(self):
         return self.client_id

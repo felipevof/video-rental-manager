@@ -17,6 +17,10 @@
 	    	<a href="{{ url_for('client_details', id=client.id) }}" class="list-group-item list-group-item-action">
 	    		{{ client.name }}
 	    	</a>
+
+        <a href="{{ url_for('client_create') }}" class="list-group-item list-group-item-action">
+          <b><i>Create New +</i></b>
+        </a>
 	    {% endfor %}
     </div>
 {% endblock %}

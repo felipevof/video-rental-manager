@@ -1,20 +1,20 @@
-from datetime import datetime
-from enum import IntEnum
+import datetime
 
-from sqlalchemy import Column, String, Integer, Date, DateTime, Enum, Boolean
+from sqlalchemy import Column, String, Integer, Date, Enum, Boolean
 from sqlalchemy.orm import relationship
 
 from .base import Base
 from .payment_methods import CreditCard
+from .utils import FormEnum
 
 
-class Gender(IntEnum):
+class Gender(FormEnum):
     MALE=0
     FEMALE=1
     UNDISCLOSED=2
 
 
-class EmployeePerformance(IntEnum):
+class EmployeePerformance(FormEnum):
     BAD=0
     REGULAR=1
     EXCEPTIONAL=2
@@ -25,14 +25,17 @@ class User(Base):
     __abstract__ = True
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    email = Column(String)
-    birthdate = Column(Date)
-    registered_at = Column(DateTime, default=datetime.utcnow)
-    gender = Column(Enum(Gender))
-    active = Column(Boolean, default=True)
-    phone = Column(String)
-    cpf = Column(String)
+    name = Column(String, info={'label': 'Name'})
+    email = Column(String, info={'label': 'Email'})
+    birthdate = Column(Date, info={'label': 'Birth Date'})
+    registered_at = Column(Date, default=datetime.date.today, info={'label': 'Registration Date'})
+    gender = Column(Enum(Gender), info={'label': 'Gender'})
+    active = Column(Boolean, default=True, info={'label': 'Active'})
+    phone = Column(String, info={'label': 'Phone'})
+    cpf = Column(String, info={'label': 'CPF'})
+
+    def __str__(self):
+        return self.getName()
 
     def getName(self):
         return self.name
@@ -86,8 +89,8 @@ class User(Base):
 class Client(User):
     __tablename__ = 'clients'
 
-    blacklisted = Column(Boolean, default=False)
-    address = Column(String)
+    blacklisted = Column(Boolean, default=False, info={'label': 'Blacklisted'})
+    address = Column(String, info={'label': 'Address'})
     credit_cards = relationship(CreditCard, backref="client")
 
     def getBlacklisted(self):
@@ -109,8 +112,8 @@ class Client(User):
 class Employee(User):
     __tablename__ = 'employees'
 
-    performance = Column(Enum(EmployeePerformance), default=EmployeePerformance.NOT_ASSESSED)
-    in_training = Column(Boolean, default=True)
+    performance = Column(Enum(EmployeePerformance), default=EmployeePerformance.NOT_ASSESSED, info={'label': 'Performance'})
+    in_training = Column(Boolean, default=True, info={'label': 'In Training'})
 
     def getPerformance(self):
         return self.performance

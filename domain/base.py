@@ -4,10 +4,10 @@ from sqlalchemy import create_engine, or_
 from sqlalchemy.inspection import inspect
 from sqlalchemy.types import String
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 engine = create_engine('sqlite+pysqlite:///rental.db', module=sqlite)
-Session = sessionmaker(bind=engine)
+session = scoped_session(sessionmaker(bind=engine))
 
 class Searchable(object):
     @classmethod
@@ -20,3 +20,4 @@ class Searchable(object):
         return session.query(cls).filter(or_(*filters))
 
 Base = declarative_base(cls=Searchable)
+Base.query = session.query_property()

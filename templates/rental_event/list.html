@@ -20,6 +20,10 @@
         {{ rental.ends_at.strftime('%d/%m/%y %H:%M') }},
         {{ rental.rentables|length }} items
       </a>
+
+      <a href="{{ url_for('rental_event_create') }}" class="list-group-item list-group-item-action">
+        <b><i>Create New +</i></b>
+      </a>
     {% endfor %}
   </div>
 {% endblock %}

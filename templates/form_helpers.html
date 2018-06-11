@@ -1,0 +1,17 @@
+{% macro render_field(field) %}
+
+<div class="form-group {% if field.errors %} error {% endif %}">
+    {% if field.widget.input_type != 'hidden' %}
+    	<label for="{{ field.name }}" class="col-6 col-form-label"><b>{{ field.label }} </b>:</label>
+    {% endif %}
+
+    <div class="col-6">
+        {{ field(class='form-control')|safe }}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <span class="help-inline">[{{ error }}]</span><br>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endmacro %}}
