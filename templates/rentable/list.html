@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+  	Rentable Items
+  	<a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <div class="list-group">
+    <a href="{{ url_for('live_action_series_list') }}" class="list-group-item list-group-item-action">Live Action Series</a>
+    <a href="{{ url_for('animated_series_list') }}" class="list-group-item list-group-item-action">Animated Series</a>
+    <a href="{{ url_for('documentary_series_list') }}" class="list-group-item list-group-item-action">Documentary Series</a>
+    <a href="{{ url_for('stand_up_comedy_special_list') }}" class="list-group-item list-group-item-action">Stand-up Comedy Specials </a>
+    <a href="{{ url_for('live_action_movie_list') }}" class="list-group-item list-group-item-action">Live Action Movies</a>
+    <a href="{{ url_for('animated_movie_list') }}" class="list-group-item list-group-item-action">Animated Movies</a>
+    <a href="{{ url_for('musical_show_list') }}" class="list-group-item list-group-item-action">Musical Shows</a>
+    <a href="{{ url_for('documentary_list') }}" class="list-group-item list-group-item-action">Documentaries</a>
+    <a href="{{ url_for('video_game_list') }}" class="list-group-item list-group-item-action">Video Games</a>
+    <a href="{{ url_for('sports_event_list') }}" class="list-group-item list-group-item-action">Sports Events</a>
+  </div>
+{% endblock %}

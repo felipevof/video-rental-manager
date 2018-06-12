@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Video Rental Manager</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="{{ url_for('static', filename='styles/base.css') }}" rel="stylesheet" media="screen">
+    
+    {% block head %}{% endblock %}
+  </head>
+
+  <body>
+    <div class="card root-card">
+      <div class="card-body">
+        <div class="card">
+          <div class="card-header">
+            {% block main_header %}{% endblock %}
+          </div>
+
+          {% block main_content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/helpers.js') }}"></script>
+  </body>
+</html>

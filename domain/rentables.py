@@ -6,20 +6,24 @@ from .base import Base
 class Rentable(Base):
     __tablename__ = 'rentables'
     __mapper_args__ = {
-        'polymorphic_on': 'type',
+        'polymorphic_on': 'rentable_type',
         'polymorphic_identity': 'rentable',
         'with_polymorphic': '*'
     }
 
     id = Column(Integer, primary_key=True)
-    title = Column(String)
-    description = Column(String, nullable=True)
-    language = Column(String)
-    age_restriction = Column(Integer)
-    rent_price = Column(Float)
+    title = Column(String, info={'label': 'Title'})
+    description = Column(String, nullable=True, info={'label': 'Description'})
+    language = Column(String, info={'label': 'Language'})
+    age_restriction = Column(Integer, info={'label': 'Age Restriction'})
+    rent_price = Column(Float, info={'label': 'Rent Price'})
+    poster_image = Column(String, info={'label': 'Poster Image (URL)'})
 
     # just for class table inheritance shenanigans
-    type = Column(String(20))
+    rentable_type = Column(String(20))
+
+    def __str__(self):
+        return self.getTitle()
 
     def getTitle(self):
         return self.title
@@ -51,6 +55,12 @@ class Rentable(Base):
     def setRentPrice(self, value):
         self.rent_price = value
 
+    def getPosterImage(self):
+        return self.poster_image
+
+    def setPosterImage(self, value):
+        self.poster_image = value
+
 # ---
 
 class SeriesSeason(Rentable):
@@ -59,11 +69,11 @@ class SeriesSeason(Rentable):
 
     id = Column(Integer, ForeignKey('rentables.id'), primary_key=True)
 
-    season_number = Column(Integer)
-    episode_count = Column(Integer)
-    episode_duration_minutes = Column(Integer)
-    network = Column(String, nullable=True)
-    genre = Column(String)
+    season_number = Column(Integer, info={'label': 'Season Number'})
+    episode_count = Column(Integer, info={'label': 'Episode Count'})
+    episode_duration_minutes = Column(Integer, info={'label': 'Episode Duration Minutes'})
+    network = Column(String, nullable=True, info={'label': 'Network'})
+    genre = Column(String, info={'label': 'Genre'})
 
     def getSeasonNumber(self):
         return self.season_number
@@ -102,11 +112,11 @@ class LiveActionSeries(SeriesSeason):
 
     id = Column(Integer, ForeignKey('rentables.id'), ForeignKey('series_seasons.id'), primary_key=True)
 
-    cast = Column(String)
-    director = Column(String)
-    writer = Column(String)
-    emmy_nominee = Column(Boolean)
-    emmy_winner = Column(Boolean)
+    cast = Column(String, info={'label': 'Cast'})
+    director = Column(String, info={'label': 'Director'})
+    writer = Column(String, info={'label': 'Writer'})
+    emmy_nominee = Column(Boolean, info={'label': 'Emmy Nominee'})
+    emmy_winner = Column(Boolean, info={'label': 'Emmy Winner'})
 
     def getCast(self):
         return self.cast
@@ -145,11 +155,11 @@ class AnimatedSeries(SeriesSeason):
 
     id = Column(Integer, ForeignKey('rentables.id'), ForeignKey('series_seasons.id'), primary_key=True)
 
-    animation_studio = Column(String)
-    original_author = Column(String)
-    has_2d = Column(Boolean)
-    has_3d = Column(Boolean)
-    adult_content = Column(Boolean)
+    animation_studio = Column(String, info={'label': 'Animation Studio'})
+    original_author = Column(String, info={'label': 'Original Author'})
+    has_2d = Column(Boolean, info={'label': 'Has 2D'})
+    has_3d = Column(Boolean, info={'label': 'Has 3D'})
+    adult_content = Column(Boolean, info={'label': 'Adult Content'})
 
     def getAnimationStudio(self):
         return self.animation_studio
@@ -188,11 +198,11 @@ class DocumentarySeries(SeriesSeason):
 
     id = Column(Integer, ForeignKey('rentables.id'), ForeignKey('series_seasons.id'), primary_key=True)
 
-    director = Column(String)
-    narrator = Column(String)
-    locations = Column(String)
-    guests = Column(String, nullable=True)
-    low_budget = Column(Boolean)
+    director = Column(String, info={'label': 'Director'})
+    narrator = Column(String, info={'label': 'Narrator'})
+    locations = Column(String, info={'label': 'Locations'})
+    guests = Column(String, nullable=True, info={'label': 'Guests'})
+    low_budget = Column(Boolean, info={'label': 'Low Budget'})
 
     def getDirector(self):
         return self.director
@@ -232,11 +242,11 @@ class FeatureFilm(Rentable):
 
     id = Column(Integer, ForeignKey('rentables.id'), primary_key=True)
 
-    duration_minutes = Column(Integer)
-    publisher = Column(String)
-    producer = Column(String)
-    release_year = Column(Integer)
-    genre = Column(String)
+    duration_minutes = Column(Integer, info={'label': 'Duration Minutes'})
+    publisher = Column(String, info={'label': 'Publisher'})
+    producer = Column(String, info={'label': 'Producer'})
+    release_year = Column(Integer, info={'label': 'Release Year'})
+    genre = Column(String, info={'label': 'Genre'})
 
     def getDurationMinutes(self):
         return self.duration_minutes
@@ -275,11 +285,11 @@ class StandUpComedySpecial(FeatureFilm):
 
     id = Column(Integer, ForeignKey('rentables.id'), ForeignKey('feature_films.id'), primary_key=True)
 
-    headliner_comedian = Column(String)
-    opener_comedian = Column(String, nullable=True)
-    venue = Column(String)
-    offensive_language = Column(Boolean)
-    additional_entertainers = Column(String, nullable=True)  # some comedians use DJs, bands, etc
+    headliner_comedian = Column(String, info={'label': 'Headliner Comedian'})
+    opener_comedian = Column(String, nullable=True, info={'label':'Opener Comedian'})
+    venue = Column(String, info={'label': 'Venue'})
+    offensive_language = Column(Boolean, info={'label': 'Offensive Language'})
+    additional_entertainers = Column(String, nullable=True, info={'label': 'Additional Entertainers'})  # some comedians use DJs, bands, etc
 
     def getHeadlinerComedian(self):
         return self.headliner_comedian
@@ -318,12 +328,12 @@ class LiveActionMovie(FeatureFilm):
 
     id = Column(Integer, ForeignKey('rentables.id'), ForeignKey('feature_films.id'), primary_key=True)
 
-    lead = Column(String, nullable=True)
-    cast = Column(String)
-    director = Column(String)
-    writer = Column(String)
-    oscar_nominee = Column(Boolean)
-    oscar_winner = Column(Boolean)
+    lead = Column(String, nullable=True, info={'label': 'Lead'})
+    cast = Column(String, info={'label': 'Cast'})
+    director = Column(String, info={'label': 'Director'})
+    writer = Column(String, info={'label': 'Writer'})
+    oscar_nominee = Column(Boolean, info={'label':'Oscar Nominee'})
+    oscar_winner = Column(Boolean, info={'label':'Oscar Winner'})
 
     def getLead(self):
         return self.lead
@@ -368,11 +378,11 @@ class AnimatedMovie(FeatureFilm):
 
     id = Column(Integer, ForeignKey('rentables.id'), ForeignKey('feature_films.id'), primary_key=True)
 
-    animation_studio = Column(String)
-    original_author = Column(String)
-    has_2d = Column(Boolean)
-    has_3d = Column(Boolean)
-    adult_content = Column(Boolean)
+    animation_studio = Column(String, info={'label': 'Animation Studio'})
+    original_author = Column(String, info={'label': 'Original Author'})
+    has_2d = Column(Boolean, info={'label': 'Has 2D'})
+    has_3d = Column(Boolean, info={'label': 'Has 3D'})
+    adult_content = Column(Boolean, info={'label': 'Adult Content'})
 
     def getAnimationStudio(self):
         return self.animation_studio
@@ -411,12 +421,12 @@ class MusicalShow(FeatureFilm):
 
     id = Column(Integer, ForeignKey('rentables.id'), ForeignKey('feature_films.id'), primary_key=True)
 
-    artist = Column(String)
-    venue = Column(String)
-    live = Column(Boolean)
-    acoustic = Column(Boolean)
-    grammy_nominee = Column(Boolean)
-    grammy_winner = Column(Boolean)
+    artist = Column(String, info={'label': 'Artist'})
+    venue = Column(String, info={'label': 'Venue'})
+    live = Column(Boolean, info={'label': 'Live'})
+    acoustic = Column(Boolean, info={'label': 'Acoustic'})
+    grammy_nominee = Column(Boolean, info={'label': 'Grammy Nominee'})
+    grammy_winner = Column(Boolean, info={'label': 'Grammy Winner'})
 
     def getArtist(self):
         return self.artist
@@ -461,11 +471,11 @@ class Documentary(FeatureFilm):
 
     id = Column(Integer, ForeignKey('rentables.id'), ForeignKey('feature_films.id'), primary_key=True)
 
-    director = Column(String)
-    narrator = Column(String)
-    locations = Column(String)
-    guests = Column(String, nullable=True)
-    low_budget = Column(Boolean)
+    director = Column(String, info={'label': 'Director'})
+    narrator = Column(String, info={'label': 'Narrator'})
+    locations = Column(String, info={'label': 'Locations'})
+    guests = Column(String, nullable=True, info={'label': 'Guests'})
+    low_budget = Column(Boolean, info={'label': 'Low Budget'})
 
     def getDirector(self):
         return self.director
@@ -505,16 +515,16 @@ class VideoGame(Rentable):
 
     id = Column(Integer, ForeignKey('rentables.id'), primary_key=True)
 
-    publisher = Column(String)
-    developer = Column(String)
-    genre = Column(String)
-    platform = Column(String)
-    demo = Column(Boolean)
-    release_year = Column(Integer)
-    single_player = Column(Boolean)
-    local_multiplayer = Column(Boolean)
-    online_multiplayer = Column(Boolean)
-    dlc_included = Column(Boolean)
+    publisher = Column(String, info={'label': 'Publisher'})
+    developer = Column(String, info={'label': 'Developer'})
+    genre = Column(String, info={'label': 'Genre'})
+    platform = Column(String, info={'label': 'Platform'})
+    demo = Column(Boolean, info={'label': 'Demo'})
+    release_year = Column(Integer, info={'label': 'Release Year'})
+    single_player = Column(Boolean, info={'label': 'Single Player'})
+    local_multiplayer = Column(Boolean, info={'label': 'Local Multiplayer'})
+    online_multiplayer = Column(Boolean, info={'label': 'Online Multiplayer'})
+    dlc_included = Column(Boolean, info={'label': 'DLC Included'})
 
     def getPublisher(self):
         return self.publisher
@@ -583,16 +593,16 @@ class SportsEvent(Rentable):
 
     id = Column(Integer, ForeignKey('rentables.id'), primary_key=True)
 
-    network = Column(String)
-    league = Column(String)
-    championship_phase = Column(String)  # finals, regular season, playoffs, etc
-    location = Column(String)
-    periods = Column(Integer)
-    period_duration_minutes = Column(Integer)
-    home_team = Column(String)
-    away_team = Column(String)
-    home_team_score = Column(Integer)
-    away_team_score = Column(Integer)
+    network = Column(String, info={'label': 'Network'})
+    league = Column(String, info={'label': 'League'})
+    championship_phase = Column(String, info={'label': 'Championship Phase'})  # finals, regular season, playoffs, etc
+    location = Column(String, info={'label': 'Location'})
+    periods = Column(Integer, info={'label': 'Periods'})
+    period_duration_minutes = Column(Integer, info={'label': 'Period Duration Minutes'})
+    home_team = Column(String, info={'label': 'Home Team'})
+    away_team = Column(String, info={'label': 'Awaw Team'})
+    home_team_score = Column(Integer, info={'label': 'Home Team Score'})
+    away_team_score = Column(Integer, info={'label': 'Away Team Score'})
 
     def getNetwork(self):
         return self.network

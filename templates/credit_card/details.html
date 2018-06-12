@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+  	Credit Card Details
+
+    <button data-url="{{ url_for('credit_card_delete', id=obj.id) }}"
+            class="btn btn-danger float-right" id="delete_button">
+          Delete
+    </button>
+
+    <a class="btn btn-primary float-right" href="{{ url_for('credit_card_edit', id=obj.id) }}" role="button">Edit</a>
+  	<a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <ul class="list-group">
+  	<li class="list-group-item">
+  		<p class="float-left"><b>Holder</b></p>
+  		<p class="float-right">{{obj.holder}}</p>
+  	</li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Number</b></p>
+      <p class="float-right">{{obj.number}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Expiration Date</b></p>
+      <p class="float-right">{{obj.expires_at.strftime('%m/%y')}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Payment Network</b></p>
+      <p class="float-right">
+        <select class="form-control" disabled>
+          <option value="0"{% if obj.gender==0 %} selected="selected"{% endif %}>Visa</option>
+          <option value="1"{% if obj.gender==1 %} selected="selected"{% endif %}>MasterCard</option>
+          <option value="2"{% if obj.gender==2 %} selected="selected"{% endif %}>Elo</option>
+          <option value="3"{% if obj.gender==3 %} selected="selected"{% endif %}>Hiper</option>
+        </select>
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Owner</b></p>
+      <p class="float-right">{{obj.client.name}}</p>
+    </li>
+  </ul>
+{% endblock %}

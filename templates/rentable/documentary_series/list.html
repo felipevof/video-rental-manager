@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+  	Documentary Series
+  	<a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+    <form class="form-inline" id="search_form" action="{{ url_for('documentary_series_list') }}">
+      <input type="text" name="query" class="form-control" />
+      <button id="search_button" class="btn btn-primary">Search</button>
+    </form>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <div class="list-group">
+    {% for series in objects %}
+      <a href="{{ url_for('documentary_series_details', id=series.id) }}" class="list-group-item list-group-item-action">
+        <img src="{{ series.poster_image }}" class="rounded float-left" width="120" height="175">
+        <p class="float-right"> {{ series.title }} </p>
+      </a>
+    {% endfor %}
+
+        <a href="{{ url_for('documentary_series_create') }}" class="list-group-item list-group-item-action">
+          <b><i>Create New +</i></b>
+        </a>
+  </div>
+{% endblock %}

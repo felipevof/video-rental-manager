@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+    Sports Event Details
+
+    <button data-url="{{ url_for('rentable_delete', id=obj.id) }}"
+            class="btn btn-danger float-right" id="delete_button">
+          Delete
+    </button>
+
+    <a class="btn btn-primary float-right" href="{{ url_for('sports_event_edit', id=obj.id) }}" role="button">Edit</a>
+    
+    <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <ul class="list-group">
+    <!-- Rentable fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Title</b></p>
+      <p class="float-right">{{obj.title}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Description</b></p>
+      <p class="float-right">{{obj.description}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Language</b></p>
+      <p class="float-right">{{obj.language}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Age Restriction</b></p>
+      <p class="float-right"> >= {{obj.age_restriction}} years old</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Rent Price</b></p>
+      <p class="float-right"> ${{"%0.2f"|format(obj.rent_price)}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Poster Image</b></p>
+      <p class="float-right">
+        <img src="{{ obj.poster_image }}" class="rounded float-left" width="48" height="70">
+      </p>
+    </li>
+
+    <!-- SportsEvent fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Network</b></p>
+      <p class="float-right">{{obj.network}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>League</b></p>
+      <p class="float-right">{{obj.league}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Championship Phase</b></p>
+      <p class="float-right">{{obj.championship_phase}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Location</b></p>
+      <p class="float-right">{{obj.location}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Number of Periods</b></p>
+      <p class="float-right">{{obj.periods}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Period Duration (Minutes)</b></p>
+      <p class="float-right">{{obj.period_duration_minutes}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Home Team</b></p>
+      <p class="float-right">{{obj.home_team}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Away Team</b></p>
+      <p class="float-right">{{obj.away_team}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Home Team Score</b></p>
+      <p class="float-right">{{obj.home_team_score}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Away Team Score</b></p>
+      <p class="float-right">{{obj.away_team_score}}</p>
+    </li>
+  </ul>
+{% endblock %}

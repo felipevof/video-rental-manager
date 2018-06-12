@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+    Live Action Series Details
+
+    <button data-url="{{ url_for('rentable_delete', id=obj.id) }}"
+            class="btn btn-danger float-right" id="delete_button">
+          Delete
+    </button>
+
+    <a class="btn btn-primary float-right" href="{{ url_for('live_action_series_edit', id=obj.id) }}" role="button">Edit</a>
+
+    <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <ul class="list-group">
+    <!-- Rentable fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Title</b></p>
+      <p class="float-right">{{obj.title}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Description</b></p>
+      <p class="float-right">{{obj.description}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Language</b></p>
+      <p class="float-right">{{obj.language}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Age Restriction</b></p>
+      <p class="float-right"> >= {{obj.age_restriction}} years old</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Rent Price</b></p>
+      <p class="float-right"> ${{"%0.2f"|format(obj.rent_price)}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Poster Image</b></p>
+      <p class="float-right">
+        <img src="{{ obj.poster_image }}" class="rounded float-left" width="48" height="70">
+      </p>
+    </li>
+
+    <!-- SeriesSeason fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Season Number</b></p>
+      <p class="float-right">{{obj.season_number}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Number of Episodes</b></p>
+      <p class="float-right">{{obj.episode_count}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Episode Duration (Minutes)</b></p>
+      <p class="float-right">{{obj.episode_duration_minutes}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Genre</b></p>
+      <p class="float-right">{{obj.genre}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Network</b></p>
+      <p class="float-right">
+        {% if obj.network %}
+          {{obj.network}}
+        {% else %}
+          --
+        {% endif %}
+      </p>
+    </li>
+
+    <!-- LiveActionSeries fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Cast</b></p>
+      <p class="float-right">{{obj.cast}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Director</b></p>
+      <p class="float-right">{{obj.director}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Writer</b></p>
+      <p class="float-right">{{obj.writer}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Emmy Nominee?</b></p>
+      <p class="float-right">
+        {% if obj.emmy_nominee %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Emmy Winner?</b></p>
+      <p class="float-right">
+        {% if obj.emmy_winner %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+  </ul>
+{% endblock %}

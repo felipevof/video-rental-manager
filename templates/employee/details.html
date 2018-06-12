@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+    Employee Details
+
+    <button data-url="{{ url_for('employee_delete', id=obj.id) }}"
+            class="btn btn-danger float-right" id="delete_button">
+          Delete
+    </button>
+
+    <a class="btn btn-primary float-right" href="{{ url_for('employee_edit', id=obj.id) }}" role="button">Edit</a>
+    <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <ul class="list-group">
+    <li class="list-group-item">
+      <p class="float-left"><b>Name</b></p>
+      <p class="float-right">{{obj.name}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Email</b></p>
+      <p class="float-right">{{obj.email}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Birthdate</b></p>
+      <p class="float-right">{{obj.birthdate.strftime('%d/%m/%Y')}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Register Date</b></p>
+      <p class="float-right">{{obj.registered_at.strftime('%d/%m/%Y')}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Gender</b></p>
+      <p class="float-right">
+        <select class="form-control" disabled>
+          <option value="0"{% if obj.gender==0 %} selected="selected"{% endif %}>Male</option>
+          <option value="1"{% if obj.gender==1 %} selected="selected"{% endif %}>Female</option>
+          <option value="2"{% if obj.gender==2 %} selected="selected"{% endif %}>Undisclosed</option>
+        </select>
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Active?</b></p>
+      <p class="float-right">
+        {% if obj.active %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Phone</b></p>
+      <p class="float-right">{{obj.phone}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>CPF</b></p>
+      <p class="float-right">{{obj.cpf}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Performance</b></p>
+      <p class="float-right">
+        <select class="form-control" disabled>
+          <option value="0"{% if obj.performance==0 %} selected="selected"{% endif %}>Bad</option>
+          <option value="1"{% if obj.performance==1 %} selected="selected"{% endif %}>Regular</option>
+          <option value="2"{% if obj.performance==2 %} selected="selected"{% endif %}>Exceptional</option>
+          <option value="3"{% if obj.performance==3 %} selected="selected"{% endif %}>Not Assessed</option>
+        </select>
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>In Training?</b></p>
+      <p class="float-right">
+        {% if obj.in_training %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+  </ul>
+{% endblock %}

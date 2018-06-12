@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+    Video Game Details
+
+    <button data-url="{{ url_for('rentable_delete', id=obj.id) }}"
+            class="btn btn-danger float-right" id="delete_button">
+          Delete
+    </button>
+
+    <a class="btn btn-primary float-right" href="{{ url_for('video_game_edit', id=obj.id) }}" role="button">Edit</a>
+
+    <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <ul class="list-group">
+    <!-- Rentable fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Title</b></p>
+      <p class="float-right">{{obj.title}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Description</b></p>
+      <p class="float-right">{{obj.description}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Language</b></p>
+      <p class="float-right">{{obj.language}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Age Restriction</b></p>
+      <p class="float-right"> >= {{obj.age_restriction}} years old</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Rent Price</b></p>
+      <p class="float-right"> ${{"%0.2f"|format(obj.rent_price)}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Poster Image</b></p>
+      <p class="float-right">
+        <img src="{{ obj.poster_image }}" class="rounded float-left" width="48" height="70">
+      </p>
+    </li>
+
+    <!-- VideoGame fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Publisher</b></p>
+      <p class="float-right">{{obj.publisher}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Developer</b></p>
+      <p class="float-right">{{obj.developer}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Genre</b></p>
+      <p class="float-right">{{obj.genre}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Platform</b></p>
+      <p class="float-right">{{obj.platform}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Release Year</b></p>
+      <p class="float-right">{{obj.release_year}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Demo?</b></p>
+      <p class="float-right">
+        {% if obj.demo %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Single Player?</b></p>
+      <p class="float-right">
+        {% if obj.single_player %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Local Multiplayer?</b></p>
+      <p class="float-right">
+        {% if obj.local_multiplayer %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Online Multiplayer?</b></p>
+      <p class="float-right">
+        {% if obj.online_multiplayer %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>DLC Included?</b></p>
+      <p class="float-right">
+        {% if obj.dlc_included %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+  </ul>
+{% endblock %}

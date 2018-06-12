@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+  	Credit Cards
+  	<a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+    <form class="form-inline" id="search_form" action="{{ url_for('credit_card_list') }}">
+      <input type="text" name="query" class="form-control" />
+      <button id="search_button" class="btn btn-primary">Search</button>
+    </form>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  	<div class="list-group">
+		{% for cc in objects %}
+	    	<a href="{{ url_for('credit_card_details', id=cc.id) }}" class="list-group-item list-group-item-action">
+	    		{{ cc.holder }}, {{ cc.number[:4] }} XXXX XXXX XXXX
+	    	</a>
+	    {% endfor %}
+
+        <a href="{{ url_for('credit_card_create') }}" class="list-group-item list-group-item-action">
+          <b><i>Create New +</i></b>
+        </a>
+    </div>
+{% endblock %}

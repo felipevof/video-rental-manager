@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+    Animated Movie Details
+
+    <button data-url="{{ url_for('rentable_delete', id=obj.id) }}"
+            class="btn btn-danger float-right" id="delete_button">
+          Delete
+    </button>
+
+    <a class="btn btn-primary float-right" href="{{ url_for('animated_movie_edit', id=obj.id) }}" role="button">Edit</a>
+    <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <ul class="list-group">
+    <!-- Rentable fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Title</b></p>
+      <p class="float-right">{{obj.title}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Description</b></p>
+      <p class="float-right">{{obj.description}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Language</b></p>
+      <p class="float-right">{{obj.language}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Age Restriction</b></p>
+      <p class="float-right"> >= {{obj.age_restriction}} years old</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Rent Price</b></p>
+      <p class="float-right"> ${{"%0.2f"|format(obj.rent_price)}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Poster Image</b></p>
+      <p class="float-right">
+        <img src="{{ obj.poster_image }}" class="rounded float-left" width="48" height="70">
+      </p>
+    </li>
+
+    <!-- FeatureFilm fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Duration (minutes)</b></p>
+      <p class="float-right">{{obj.duration_minutes}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Publisher</b></p>
+      <p class="float-right">{{obj.publisher}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Producer</b></p>
+      <p class="float-right">{{obj.producer}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Release (Year)</b></p>
+      <p class="float-right">{{obj.release_year}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Genre</b></p>
+      <p class="float-right">{{obj.genre}}</p>
+    </li>
+
+    <!-- Animation fields -->
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Animation Studio</b></p>
+      <p class="float-right">{{obj.animation_studio}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Original Author</b></p>
+      <p class="float-right">{{obj.original_author}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Contains 2D Animation?</b></p>
+      <p class="float-right">
+        {% if obj.has_2d %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Contains 3D Animation?</b></p>
+      <p class="float-right">
+        {% if obj.has_3d %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Contains Adult Content?</b></p>
+      <p class="float-right">
+        {% if obj.adult_content %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+  </ul>
+{% endblock %}

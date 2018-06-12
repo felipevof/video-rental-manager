@@ -1,0 +1,24 @@
+html
+{
+  height: 100%;
+}
+
+body
+{
+  min-height: 100%;
+}
+
+.root-card
+{
+	background-clip: none;
+	width: 1000px;
+  	margin: auto;
+}
+
+#search_button {
+	margin-left: 5px;
+}
+
+#search_form {
+	margin-top: 5px;
+}

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block main_header %}
+  <h2>
+    Rental Details
+
+    <button data-url="{{ url_for('rental_event_delete', id=obj.id) }}"
+            class="btn btn-danger float-right" id="delete_button">
+          Delete
+    </button>
+
+    <a class="btn btn-primary float-right" href="{{ url_for('rental_event_edit', id=obj.id) }}" role="button">Edit</a>
+    <a class="btn btn-light float-right" href="{{ url_for('home') }}" role="button">Home</a>
+  </h2>
+{% endblock %}
+
+{% block main_content %}
+  <ul class="list-group">
+    <li class="list-group-item">
+      <p class="float-left"><b>Client</b></p>
+      <p class="float-right">{{obj.client.name}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Employee</b></p>
+      <p class="float-right">{{obj.employee.name}}</p>
+    </li>
+
+    <li class="list-group-item">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>Rented Titles</b></li>
+          {% for rentable in obj.rentables %}
+            <li class="list-group-item">
+                <img src="{{ rentable.poster_image }}" class="rounded float-left" width="48" height="70">
+                <p class="float-right"> {{ rentable.title }} </p>
+           </li>
+          {% endfor %}
+        </ul>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Rented At</b></p>
+      <p class="float-right">{{obj.rented_at.strftime('%d/%m/%Y %H:%M')}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Ends At</b></p>
+      <p class="float-right">{{obj.ends_at.strftime('%d/%m/%Y %H:%M')}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Returned At</b></p>
+      <p class="float-right">
+        {% if obj.returned_at %}
+          {{obj.returned_at.strftime('%d/%m/%Y %H:%M')}}
+        {% else %}
+          --
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Status</b></p>
+      <p class="float-right">
+        <select class="form-control" disabled>
+          <option value="0"{% if obj.status==0 %} selected="selected"{% endif %}>Waiting Return</option>
+          <option value="1"{% if obj.status==1 %} selected="selected"{% endif %}>Items Returned OK</option>
+          <option value="2"{% if obj.status==2 %} selected="selected"{% endif %}>Items Returned Damaged</option>
+          <option value="3"{% if obj.status==3 %} selected="selected"{% endif %}>Items Returned Missing</option>
+          <option value="4"{% if obj.status==4 %} selected="selected"{% endif %}>Items Not Returned</option>
+        </select>
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Ignore if end date has passed?</b></p>
+      <p class="float-right">
+        {% if obj.ignore_end_date %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Ignore if missing?</b></p>
+      <p class="float-right">
+        {% if obj.ignore_missing %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      </p>
+    </li>
+
+    <li class="list-group-item">
+      <p class="float-left"><b>Notes</b></p>
+      <p class="float-right">
+        {% if obj.notes %}
+          {{obj.notes}}
+        {% else %}
+          --
+        {% endif %}
+      </p>
+    </li>
+  </ul>
+{% endblock %}

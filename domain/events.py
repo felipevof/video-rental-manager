@@ -1,13 +1,14 @@
-from datetime import datetime
-from enum import IntEnum
+import datetime
 
-from sqlalchemy import Column, String, Integer, Date, DateTime, Boolean, Table, ForeignKey, Enum
+from sqlalchemy import Column, String, Integer, Date, Boolean, Table, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 
 from .base import Base
+from .rentables import Rentable
+from .utils import FormEnum
 
 
-class RentalStatus(IntEnum):
+class RentalStatus(FormEnum):
     WAITING_RETURN=0
     ITEMS_RETURNED_OK=1
     ITEMS_RETURNED_DAMAGED=2
@@ -25,16 +26,18 @@ class RentalEvent(Base):
     __tablename__ = 'rental_events'
 
     id = Column(Integer, primary_key=True)
-    rented_at = Column(DateTime, default=datetime.utcnow)
-    ends_at = Column(DateTime)
-    returned_at = Column(DateTime)
-    rentables = relationship("Rentable", secondary=rental_event_rentables_association)
-    employee_id = Column(Integer, ForeignKey('employees.id'))
-    client_id = Column(Integer, ForeignKey('clients.id'))
-    notes = Column(String, nullable=True)
-    status = Column(Enum(RentalStatus), default=RentalStatus.WAITING_RETURN)
-    ignore_end_date = Column(Boolean, default=False)
-    ignore_missing = Column(Boolean, default=False)
+    rented_at = Column(Date, default=datetime.date.today, info={'label': 'Rent Date'})
+    ends_at = Column(Date, info={'label': 'End Date'})
+    returned_at = Column(Date, nullable=True, info={'label': 'Return Date'})
+    rentables = relationship("Rentable", secondary=rental_event_rentables_association, info={'label': 'Rentables'})
+    employee_id = Column(Integer, ForeignKey('employees.id'), info={'label': 'Employee'})
+    employee = relationship("Employee")
+    client_id = Column(Integer, ForeignKey('clients.id'), info={'label': 'Client'})
+    client = relationship("Client")
+    notes = Column(String, nullable=True, info={'label': 'Notes'})
+    status = Column(Enum(RentalStatus), default=RentalStatus.WAITING_RETURN, info={'label': 'Status'})
+    ignore_end_date = Column(Boolean, default=False, info={'label': 'Ignore End Date'})
+    ignore_missing = Column(Boolean, default=False, info={'label': 'Ignore Missing'})
 
     def getRentedAt(self):
         return self.rented_at
@@ -62,17 +65,17 @@ class RentalEvent(Base):
         for v in value:
             self.rentables.append(v)
 
-    def getEmployeeId(self):
-        return self.employee_id
+    def getEmployee(self):
+        return self.employee
 
-    def setEmployeeId(self, value):
-        self.employee_id = value
+    def setEmployee(self, value):
+        self.employee = value
 
-    def getClientId(self):
-        return self.client_id
+    def getClient(self):
+        return self.client
 
-    def setClientId(self, value):
-        self.client_id = value
+    def setClient(self, value):
+        self.client = value
 
     def getNotes(self):
         return self.notes
