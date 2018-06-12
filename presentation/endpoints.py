@@ -106,7 +106,7 @@ def credit_card_list():
 
 def credit_card_create():
     def _mapping(form, obj):
-        obj.setClientId(form.client_id.data.id)
+        obj.setClient(form.client.data)
         obj.setHolder(form.holder.data)
         obj.setNumber(form.number.data)
         obj.setExpiresAt(form.expires_at.data)
@@ -123,7 +123,7 @@ def credit_card_delete(id):
 
 def credit_card_edit(id):
     def _mapping(form, obj):
-        obj.setClientId(form.client_id.data.id)
+        obj.setClient(form.client.data)
         obj.setHolder(form.holder.data)
         obj.setNumber(form.number.data)
         obj.setExpiresAt(form.expires_at.data)
@@ -141,9 +141,11 @@ def rental_event_create():
         obj.setEndsAt(form.ends_at.data)
         obj.setReturnedAt(form.returned_at.data)
         obj.setRentables(form.rentables.data)
-        obj.setEmployeeId(form.employee_id.data.id)
-        obj.setClientId(form.client_id.data.id)
+        obj.setEmployee(form.employee.data)
+        obj.setClient(form.client.data)
         obj.setNotes(form.notes.data)
+        obj.setIgnoreEndDate(form.ignore_end_date.data)
+        obj.setIgnoreMissing(form.ignore_missing.data)
 
     return creation_response(RentalEvent, RentalEventForm, g.db_session, _mapping,
                              'rental_event/create.html', 'rental_event_list')
@@ -159,9 +161,11 @@ def rental_event_edit(id):
         obj.setEndsAt(form.ends_at.data)
         obj.setReturnedAt(form.returned_at.data)
         obj.setRentables(form.rentables.data)
-        obj.setEmployeeId(form.employee_id.data.id)
-        obj.setClientId(form.client_id.data.id)
+        obj.setEmployee(form.employee.data)
+        obj.setClient(form.client.data)
         obj.setNotes(form.notes.data)
+        obj.setIgnoreEndDate(form.ignore_end_date.data)
+        obj.setIgnoreMissing(form.ignore_missing.data)
 
     return edit_response(RentalEvent, id, RentalEventForm, g.db_session, _mapping,
                              'rental_event/edit.html', 'rental_event_list')

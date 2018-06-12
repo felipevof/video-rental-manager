@@ -65,17 +65,17 @@ class RentalEvent(Base):
         for v in value:
             self.rentables.append(v)
 
-    def getEmployeeId(self):
-        return self.employee_id
+    def getEmployee(self):
+        return self.employee
 
-    def setEmployeeId(self, value):
-        self.employee_id = value
+    def setEmployee(self, value):
+        self.employee = value
 
-    def getClientId(self):
-        return self.client_id
+    def getClient(self):
+        return self.client
 
-    def setClientId(self, value):
-        self.client_id = value
+    def setClient(self, value):
+        self.client = value
 
     def getNotes(self):
         return self.notes

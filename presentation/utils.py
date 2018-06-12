@@ -1,4 +1,6 @@
 from flask import render_template, abort, url_for, redirect, request
+from sqlalchemy.types import Boolean
+from sqlalchemy.inspection import inspect
 
 
 def build_context(additional_fields=None):
@@ -71,5 +73,16 @@ def edit_response(model, obj_id, form, session, mapping_function, template, redi
         session.commit()
 
         return redirect(url_for(redirect_state))
+
+    # patch boolean fields
+    table = inspect(model)
+    columns = [col.key for col in table.c if isinstance(col.type, Boolean)]
+    for col in columns:
+        form_field = getattr(form, col)
+        form_field.data = getattr(obj, col)
+
+    # patch many-to-many
+    if hasattr(obj, 'rentables'):
+        form.rentables.data = obj.getRentables()
 
     return render_template(template, form=form)

@@ -31,7 +31,7 @@ class CreditCardForm(ModelForm):
     class Meta:
         model = CreditCard
 
-    client_id = QuerySelectField(query_factory=lambda: Client.query.all(), allow_blank=False)
+    client = QuerySelectField(query_factory=lambda: Client.query.all(), allow_blank=False)
     payment_network = SelectField(choices=PaymentNetwork.choices(), coerce=PaymentNetwork.coerce)
 
 
@@ -40,8 +40,8 @@ class RentalEventForm(ModelForm):
         model = RentalEvent
 
     status = SelectField(choices=RentalStatus.choices(), coerce=RentalStatus.coerce)
-    client_id = QuerySelectField(query_factory=lambda: Client.query.all(), allow_blank=False)
-    employee_id = QuerySelectField(query_factory=lambda: Employee.query.all(), allow_blank=False)
+    client = QuerySelectField(query_factory=lambda: Client.query.all(), allow_blank=False)
+    employee = QuerySelectField(query_factory=lambda: Employee.query.all(), allow_blank=False)
     rentables = QuerySelectMultipleField(query_factory=lambda: Rentable.query.all(), allow_blank=False)
 
 class LiveActionSeriesForm(ModelForm):

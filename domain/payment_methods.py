@@ -24,11 +24,11 @@ class CreditCard(Base):
     def __str__(self):
         return self.getHolder()
 
-    def getClientId(self):
-        return self.client_id
+    def getClient(self):
+        return self.client
 
-    def setClientId(self, value):
-        self.client_id = value
+    def setClient(self, value):
+        self.client = value
 
     def getHolder(self):
         return self.holder
