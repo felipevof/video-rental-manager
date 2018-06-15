@@ -1,6 +1,10 @@
 click==6.7
+decorator==4.3.0
 Flask==0.12.2
 Flask-Restless==0.17.0
+Flask-WTF==0.14.2
+infinity==1.4
+intervals==0.8.1
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
@@ -9,4 +13,9 @@ python-dateutil==2.7.3
 python-mimeparse==1.6.0
 six==1.11.0
 SQLAlchemy==1.2.7
+SQLAlchemy-Utils==0.33.3
+validators==0.12.2
 Werkzeug==0.14.1
+WTForms==2.2.1
+WTForms-Alchemy==0.16.7
+WTForms-Components==0.10.3
